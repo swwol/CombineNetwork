@@ -21,6 +21,9 @@
                                     <constraint firstAttribute="height" constant="50" id="nq1-mU-fQW"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="submitPressed:" destination="MAw-DN-4yk" eventType="touchUpInside" id="smn-6E-Ux5"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u9z-8k-VNU">
                                 <rect key="frame" x="20" y="431" width="374" height="34"/>

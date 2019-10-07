@@ -7,33 +7,45 @@ final class WriteViewController: UIViewController {
     @IBOutlet private weak var field: UITextField!
 
     var viewModel: WriteViewModelType!
+    var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        _ = NotificationCenter
+        NotificationCenter
             .default
             .didChange(textField: field) { string in
                 self.viewModel.inputs.fieldUpdated(with: string)
         }
+        .store(in: &subscriptions)
 
-            bind(viewModel.outputs)
+        bind(viewModel.outputs)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        subscriptions.forEach { $0.cancel() }
     }
 
     private func bind(_ outputs: WriteViewModelOutputsType) {
-
-        _ =  viewModel
-            .outputs
+        outputs
             .isEnabled
             .receive(on: DispatchQueue.main)
             .assign(to: \.isEnabled, on: submitButton)
+            .store(in: &subscriptions)
 
-        _ =  viewModel
-            .outputs
+        outputs
             .buttonLabel
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: submitButton.title)
+            .store(in: &subscriptions)
+    }
+    @IBAction func submitPressed(_ sender: UIButton) {
 
+        guard let text = field.text else { return }
+        viewModel
+            .inputs
+            .addListItem(text: text)
     }
 }
 

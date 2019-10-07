@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		0E3ECB912347842A00BBF89E /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECB902347842A00BBF89E /* UIButton+Extension.swift */; };
 		0E3ECB93234B383800BBF89E /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECB92234B383800BBF89E /* NotificationCenter+Extension.swift */; };
+		0E3ECB96234B3C5100BBF89E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E3ECB95234B3C5100BBF89E /* List.storyboard */; };
+		0E3ECB98234B3C6200BBF89E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECB97234B3C6200BBF89E /* ListViewController.swift */; };
+		0E3ECB9A234B42C400BBF89E /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECB99234B42C400BBF89E /* ListCoordinator.swift */; };
+		0E3ECB9C234B430900BBF89E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECB9B234B430900BBF89E /* ListViewModel.swift */; };
+		0E3ECB9E234B5CBA00BBF89E /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECB9D234B5CBA00BBF89E /* Repository.swift */; };
+		0E3ECBA1234B5D0400BBF89E /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECBA0234B5D0400BBF89E /* Persistable.swift */; };
+		0E3ECBA3234B5DF100BBF89E /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECBA2234B5DF100BBF89E /* ListItem.swift */; };
+		0E3ECBA7234B5EE700BBF89E /* ListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECBA6234B5EE700BBF89E /* ListStore.swift */; };
+		0E3ECBA9234B776000BBF89E /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECBA8234B776000BBF89E /* ListDataSource.swift */; };
 		0EC966022345EE8C0067ADA6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC966012345EE8C0067ADA6 /* Coordinator.swift */; };
 		0EC966052345EF320067ADA6 /* BlankNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC966042345EF320067ADA6 /* BlankNavigationBar.swift */; };
 		0EC966072345EF6A0067ADA6 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC966062345EF6A0067ADA6 /* AppCoordinator.swift */; };
@@ -28,6 +37,15 @@
 /* Begin PBXFileReference section */
 		0E3ECB902347842A00BBF89E /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		0E3ECB92234B383800BBF89E /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
+		0E3ECB95234B3C5100BBF89E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		0E3ECB97234B3C6200BBF89E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		0E3ECB99234B42C400BBF89E /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
+		0E3ECB9B234B430900BBF89E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		0E3ECB9D234B5CBA00BBF89E /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = CombineToDo/Repository/Repository.swift; sourceTree = SOURCE_ROOT; };
+		0E3ECBA0234B5D0400BBF89E /* Persistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		0E3ECBA2234B5DF100BBF89E /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		0E3ECBA6234B5EE700BBF89E /* ListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStore.swift; sourceTree = "<group>"; };
+		0E3ECBA8234B776000BBF89E /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
 		0EC966012345EE8C0067ADA6 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		0EC966042345EF320067ADA6 /* BlankNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankNavigationBar.swift; sourceTree = "<group>"; };
 		0EC966062345EF6A0067ADA6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -67,6 +85,44 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		0E3ECB94234B3C2E00BBF89E /* List */ = {
+			isa = PBXGroup;
+			children = (
+				0E3ECB95234B3C5100BBF89E /* List.storyboard */,
+				0E3ECB97234B3C6200BBF89E /* ListViewController.swift */,
+				0E3ECB99234B42C400BBF89E /* ListCoordinator.swift */,
+				0E3ECB9B234B430900BBF89E /* ListViewModel.swift */,
+				0E3ECBA8234B776000BBF89E /* ListDataSource.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		0E3ECB9F234B5CEF00BBF89E /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				0E3ECBA5234B5EDA00BBF89E /* Store */,
+				0E3ECB9D234B5CBA00BBF89E /* Repository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		0E3ECBA4234B5E3100BBF89E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E3ECBA2234B5DF100BBF89E /* ListItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0E3ECBA5234B5EDA00BBF89E /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				0E3ECBA0234B5D0400BBF89E /* Persistable.swift */,
+				0E3ECBA6234B5EE700BBF89E /* ListStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		0EC966032345EE910067ADA6 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +137,7 @@
 		0EC9660E23462B250067ADA6 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				0E3ECB94234B3C2E00BBF89E /* List */,
 				0EC9660F23462B330067ADA6 /* Write */,
 			);
 			path = UseCase;
@@ -116,6 +173,8 @@
 		0ED5C2BA2344FFD600EAE1AC /* CombineToDo */ = {
 			isa = PBXGroup;
 			children = (
+				0E3ECBA4234B5E3100BBF89E /* Model */,
+				0E3ECB9F234B5CEF00BBF89E /* Repository */,
 				0E3ECB8F2347841400BBF89E /* Extensions */,
 				0EC9660E23462B250067ADA6 /* UseCase */,
 				0ED5C2BB2344FFD600EAE1AC /* AppDelegate.swift */,
@@ -189,6 +248,7 @@
 			files = (
 				0ED5C2C82344FFD800EAE1AC /* LaunchScreen.storyboard in Resources */,
 				0ED5C2C52344FFD800EAE1AC /* Assets.xcassets in Resources */,
+				0E3ECB96234B3C5100BBF89E /* List.storyboard in Resources */,
 				0EC9661123462B5B0067ADA6 /* Write.storyboard in Resources */,
 				0EC9660D234620D00067ADA6 /* App.storyboard in Resources */,
 			);
@@ -203,15 +263,23 @@
 			files = (
 				0EC9660923460A3A0067ADA6 /* CoordinatiorFactory.swift in Sources */,
 				0EC966072345EF6A0067ADA6 /* AppCoordinator.swift in Sources */,
+				0E3ECBA9234B776000BBF89E /* ListDataSource.swift in Sources */,
 				0EC9661923462F570067ADA6 /* WriteViewModel.swift in Sources */,
 				0EC966052345EF320067ADA6 /* BlankNavigationBar.swift in Sources */,
 				0EC966022345EE8C0067ADA6 /* Coordinator.swift in Sources */,
+				0E3ECB9C234B430900BBF89E /* ListViewModel.swift in Sources */,
+				0E3ECBA7234B5EE700BBF89E /* ListStore.swift in Sources */,
 				0E3ECB93234B383800BBF89E /* NotificationCenter+Extension.swift in Sources */,
+				0E3ECBA1234B5D0400BBF89E /* Persistable.swift in Sources */,
 				0E3ECB912347842A00BBF89E /* UIButton+Extension.swift in Sources */,
 				0EC9661523462C620067ADA6 /* WriteCoordinator.swift in Sources */,
 				0ED5C2BC2344FFD600EAE1AC /* AppDelegate.swift in Sources */,
 				0EC9661323462B700067ADA6 /* WriteViewController.swift in Sources */,
+				0E3ECBA3234B5DF100BBF89E /* ListItem.swift in Sources */,
+				0E3ECB9E234B5CBA00BBF89E /* Repository.swift in Sources */,
+				0E3ECB9A234B42C400BBF89E /* ListCoordinator.swift in Sources */,
 				0EC9661723462F250067ADA6 /* UIViewController+Extension.swift in Sources */,
+				0E3ECB98234B3C6200BBF89E /* ListViewController.swift in Sources */,
 				0ED5C2BE2344FFD600EAE1AC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
