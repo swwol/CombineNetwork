@@ -10,6 +10,7 @@ protocol ListViewModelType {
 protocol ListViewModelInputsType {
     func add()
     func fetch()
+    func toggleItem(index: Int)
 }
 
 protocol ListViewModelDelegate: AnyObject {
@@ -33,12 +34,12 @@ final class ListViewModel: ListViewModelType, ListViewModelInputsType, ListViewM
     }
 
     private let addButtonLabelPublisher: Just<String?>
-    private let itemsPublisher: PassthroughSubject<[ListItem], Never>
+    private let itemsPublisher: CurrentValueSubject<[ListItem], Never>
     private let repository: RepositoryType
 
     init(repository: RepositoryType) {
         addButtonLabelPublisher = Just("Add")
-        itemsPublisher = PassthroughSubject<[ListItem], Never>()
+        itemsPublisher = CurrentValueSubject<[ListItem], Never>([])
         self.repository = repository
     }
 
@@ -62,5 +63,11 @@ final class ListViewModel: ListViewModelType, ListViewModelInputsType, ListViewM
                 self.itemsPublisher.send(items)
             }
         })
+    }
+
+    func toggleItem(index: Int) {
+        var items = itemsPublisher.value
+        items[index].done = !items[index].done
+        itemsPublisher.send(items)
     }
 }
