@@ -1,6 +1,8 @@
 import UIKit
 import Combine
 
+typealias ListViewModelTypeAndDataSourceDelegate = ListViewModelType & ListDataSourceDelegate
+
 protocol ListViewModelType {
     var inputs: ListViewModelInputsType { get }
     var outputs: ListViewModelOutputsType { get }
@@ -69,5 +71,15 @@ final class ListViewModel: ListViewModelType, ListViewModelInputsType, ListViewM
         var items = itemsPublisher.value
         items[index].done = !items[index].done
         itemsPublisher.send(items)
+    }
+}
+
+extension ListViewModel: ListDataSourceDelegate {
+    func sync(items: [ListItem], on: ListDataSource) {
+        do {
+            try repository.saveItems(items: items)
+        } catch let error {
+            print (error)
+        }
     }
 }

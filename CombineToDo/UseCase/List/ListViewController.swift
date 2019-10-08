@@ -5,7 +5,7 @@ final class ListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var newButton: UIButton!
-    var viewModel: ListViewModelType!
+    var viewModel: ListViewModelTypeAndDataSourceDelegate!
     var subscriptions = Set<AnyCancellable>()
 
     private let datasource = ListDataSource()
@@ -14,6 +14,8 @@ final class ListViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = datasource
         datasource.tableView = tableView
+        datasource.delegate = viewModel
+
         tableView.delegate = self
         bind(viewModel.outputs)
     }

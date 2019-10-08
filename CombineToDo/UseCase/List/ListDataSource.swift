@@ -1,17 +1,27 @@
 import UIKit
 import Combine
 
+protocol ListDataSourceDelegate: AnyObject {
+    func sync(items: [ListItem], on: ListDataSource)
+}
+
 final class ListDataSource: NSObject, UITableViewDataSource, Subscriber {
 
     typealias Input = [ListItem]
     typealias Failure = Never
+
+    var items = [ListItem]()
+    weak var tableView: UITableView?
+    weak var delegate: ListDataSourceDelegate?
 
     func receive(subscription: Subscription) {
         subscription.request(.unlimited)
     }
 
     func receive(_ input: [ListItem]) -> Subscribers.Demand {
+        guard self.items != input else { return .none }
         self.items = input
+        tableView?.reloadData()
         return .none
     }
 
@@ -19,13 +29,7 @@ final class ListDataSource: NSObject, UITableViewDataSource, Subscriber {
         print("Received completion", completion)
     }
 
-    var items = [ListItem]() {
-        didSet {
-            tableView?.reloadData()
-        }
-    }
 
-    weak var tableView: UITableView?
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
@@ -39,4 +43,16 @@ final class ListDataSource: NSObject, UITableViewDataSource, Subscriber {
         cell.textLabel?.text = items[indexPath.row].item
         return cell
     }
-}
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            items.remove(at: indexPath.row)
+            delegate?.sync(items: items, on: self)
+            self.tableView?.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+    }
