@@ -1,6 +1,10 @@
 import Foundation
 
 struct ListItem: Codable, Equatable {
-    var item: String
-    var done: Bool
+    let item: String
+    let done: Bool
+
+    func toggled() -> ListItem {
+        return ListItem(item: self.item, done: !self.done)
+    }
 }

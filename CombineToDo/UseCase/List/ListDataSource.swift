@@ -56,3 +56,13 @@ final class ListDataSource: NSObject, UITableViewDataSource, Subscriber {
             }
         }
     }
+
+extension ListDataSource: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        items[indexPath.row] = items[indexPath.row].toggled()
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+        delegate?.sync(items: items, on: self)
+    }
+}

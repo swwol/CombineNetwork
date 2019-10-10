@@ -34,10 +34,12 @@ final class WriteViewModel: WriteViewModelType, WriteViewModelInputsType, WriteV
 
     var isEnabled: AnyPublisher<Bool, Never> {
         return enabledPublisher
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     var buttonLabel: AnyPublisher<String?, Never> {
         return buttonLabelPublisher
+        .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     }
 

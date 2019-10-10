@@ -10,7 +10,7 @@ protocol RepositoryType {
 final class Repository: RepositoryType {
 
     let store: ListStoreType
-
+    var subscriptions = Set<AnyCancellable>()
     init(store: ListStoreType) {
         self.store = store
     }
@@ -26,7 +26,8 @@ final class Repository: RepositoryType {
     }
 
     func addItem(item: ListItem) {
-        _ = getItems().sink(receiveValue: { items in
+
+        getItems().sink(receiveValue: { items in
             do {
                 if let items = items {
                     try self.saveItems(items: items + [item])
@@ -36,6 +37,6 @@ final class Repository: RepositoryType {
             } catch let error {
                 print ( error)
             }
-        })
+            }).store(in: &subscriptions)
     }
 }

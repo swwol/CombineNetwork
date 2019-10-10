@@ -13,10 +13,10 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = datasource
+        tableView.delegate = datasource
         datasource.tableView = tableView
         datasource.delegate = viewModel
 
-        tableView.delegate = self
         bind(viewModel.outputs)
     }
 
@@ -43,10 +43,4 @@ final class ListViewController: UIViewController {
     }
 }
 
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel
-            .inputs
-            .toggleItem(index: indexPath.row)
-    }
-}
+

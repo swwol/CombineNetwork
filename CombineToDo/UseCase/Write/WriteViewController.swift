@@ -30,13 +30,11 @@ final class WriteViewController: UIViewController {
     private func bind(_ outputs: WriteViewModelOutputsType) {
         outputs
             .isEnabled
-            .receive(on: DispatchQueue.main)
             .assign(to: \.isEnabled, on: submitButton)
             .store(in: &subscriptions)
 
         outputs
             .buttonLabel
-            .receive(on: DispatchQueue.main)
             .sink(receiveValue: submitButton.title)
             .store(in: &subscriptions)
     }
