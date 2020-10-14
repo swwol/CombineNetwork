@@ -16,10 +16,12 @@ final class NetworkViewController: UIViewController {
     override func viewDidLoad() {
         viewModel
             .$body
+            .receive(on: DispatchQueue.main)
             .assign(to: \.text, on: bodyLabel)
             .store(in: &cancellables)
         viewModel
             .$title
+            .receive(on: DispatchQueue.main)
             .assign(to: \.text, on: titleLabel)
             .store(in: &cancellables)
     }

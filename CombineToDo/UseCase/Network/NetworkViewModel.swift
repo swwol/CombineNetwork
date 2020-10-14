@@ -8,23 +8,21 @@ final class NetworkViewModel: ObservableObject {
         self.networkRepository = networkRepository
     }
 
+    @Published private(set) var body: String?
     @Published private(set) var title: String?
-    @Published private(set) var body: String? = nil
-
-    var titleSubject = PassthroughSubject<String, Never>()
 
     func didPressStart() {
 
-        networkRepository
-            .getPost()
+        let post = networkRepository.getPost()
+
+        post
             .map { $0.body }
-            .replaceError(with: "error")
+            .replaceError(with: "")
             .assign(to: &$body)
 
-        networkRepository
-            .getPost()
+        post
             .map { $0.title }
-            .replaceError(with: "error")
+            .replaceError(with: "")
             .assign(to: &$title)
     }
 }
