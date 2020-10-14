@@ -7,7 +7,7 @@ struct Post: Codable {
     let title: String
     let body: String
 
-    static func get() -> Resource< Post, Post> {
+    static func get() -> Resource<Networking.Empty, Post> {
         return Resource(endpoint: "/posts/1", method: .get, decoder: JSONDecoder())
     }
 }
