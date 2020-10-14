@@ -1,6 +1,6 @@
 import Combine
 
-final class NetworkViewModel {
+final class NetworkViewModel: ObservableObject {
 
     let networkRepository: NetworkRepository
 
@@ -8,20 +8,24 @@ final class NetworkViewModel {
         self.networkRepository = networkRepository
     }
 
-    @Published var title: String? = nil
-    @Published var body: String? = nil
-    
-    var cancellables = Set<AnyCancellable>()
+    @Published private(set) var title: String?
+    @Published private(set) var body: String? = nil
+
+    var titleSubject = PassthroughSubject<String, Never>()
+
     func didPressStart() {
 
         networkRepository
             .getPost()
-            .sink(receiveCompletion: { print($0)},
-                  receiveValue: { post in
-                    self.title = post.title
-                    self.body = post.body
-                  })
-            .store(in: &cancellables)
-        }
+            .map { $0.body }
+            .replaceError(with: "error")
+            .assign(to: &$body)
+
+        networkRepository
+            .getPost()
+            .map { $0.title }
+            .replaceError(with: "error")
+            .assign(to: &$title)
     }
+}
 
