@@ -8,9 +8,7 @@ class NetworkRepository {
 
     func getPost() -> Future<Post, Error> {
         return Future<Post, Error> { promise in
-            self.webservice.load(Post.get()) { result in
-              promise(result)
-            }
+            self.webservice.load(Post.get(), completion: promise)
         }
     }
 }
